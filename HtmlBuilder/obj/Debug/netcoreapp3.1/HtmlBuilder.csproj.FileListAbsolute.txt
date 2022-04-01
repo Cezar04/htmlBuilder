@@ -1,0 +1,14 @@
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\bin\Debug\netcoreapp3.1\HtmlBuilder.exe
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\bin\Debug\netcoreapp3.1\HtmlBuilder.deps.json
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\bin\Debug\netcoreapp3.1\HtmlBuilder.runtimeconfig.json
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\bin\Debug\netcoreapp3.1\HtmlBuilder.runtimeconfig.dev.json
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\bin\Debug\netcoreapp3.1\HtmlBuilder.dll
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\bin\Debug\netcoreapp3.1\HtmlBuilder.pdb
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\obj\Debug\netcoreapp3.1\HtmlBuilder.csproj.AssemblyReference.cache
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\obj\Debug\netcoreapp3.1\HtmlBuilder.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\obj\Debug\netcoreapp3.1\HtmlBuilder.AssemblyInfoInputs.cache
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\obj\Debug\netcoreapp3.1\HtmlBuilder.AssemblyInfo.cs
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\obj\Debug\netcoreapp3.1\HtmlBuilder.csproj.CoreCompileInputs.cache
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\obj\Debug\netcoreapp3.1\HtmlBuilder.dll
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\obj\Debug\netcoreapp3.1\HtmlBuilder.pdb
+C:\Users\cezar.iancu\eu\HtmlBuilder\HtmlBuilder\obj\Debug\netcoreapp3.1\HtmlBuilder.genruntimeconfig.cache
