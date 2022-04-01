@@ -25,7 +25,6 @@ namespace HtmlBuilder
 
             }
             while (userInput != "exit");
-
         }
     }
 }
