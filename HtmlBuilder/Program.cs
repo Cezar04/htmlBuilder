@@ -9,15 +9,21 @@ namespace HtmlBuilder
         {
             var acceptedValues = new List<string>() { "div", "span", "close", "exit" };
             var textTags = new List<string>() { "p", "h1", "h2", "h3", "h4", "h5", "h6", };
+            var tagStack = new Stack<string>();
 
             var UserInputList = new List<string>();
             string userInput;
 
-            AddRequiredTags(UserInputList, "html");
+            AddRequiredTags(UserInputList, "html", tagStack);
 
-            AddRequiredTags(UserInputList, "head");
+            AddRequiredTags(UserInputList, "head", tagStack);
 
-            AddRequiredTags(UserInputList, "body");
+            AddRequiredTags(UserInputList, "body", tagStack);
+            foreach (string e in tagStack)
+            {
+                Console.WriteLine(e);
+            }
+
 
             do
             {
@@ -28,11 +34,18 @@ namespace HtmlBuilder
                     if (acceptedValues.Contains(userInput) || textTags.Contains(userInput))
                     {
 
-                        AddTextTags(textTags, UserInputList, userInput);
+                        AddTextTags(textTags, UserInputList, userInput, tagStack);
 
-                        AddItemsToUserInputList(textTags, UserInputList, userInput);
+                        AddItemsToUserInputList(textTags, UserInputList, userInput, tagStack);
 
                         DisplayListContent(UserInputList);
+
+
+                        foreach (string e in tagStack)
+                        {
+                            Console.WriteLine(e);
+                        }
+
 
                     }
                     else
@@ -53,7 +66,7 @@ namespace HtmlBuilder
         {
             return userInput switch
             {
-                "html" => "<!DOCTYPE html><html>",
+                "html" => "<!DOCTYPE html>",
                 "head" => "<head><title>HtmlBuilder</title></head>",
                 "body" => "<body>",
                 "div" => "<div>",
@@ -78,25 +91,37 @@ namespace HtmlBuilder
             }
         }
 
-        private static void AddItemsToUserInputList(List<string> textTags, List<string> UserInputList, string userInput)
+        private static void AddItemsToUserInputList(List<string> textTags, List<string> UserInputList, string userInput, Stack<string> stackTag)
         {
             if (!textTags.Contains(userInput))
             {
                 UserInputList.Add(FormatValue(userInput, null));
+                if (userInput != "close")
+                {
+                    PushClosingTags(userInput, stackTag);
+                }
+
             }
         }
 
-        private static void AddTextTags(List<string> textTags, List<string> UserInputList, string userInput)
+        private static void PushClosingTags(string userInput, Stack<string> stackTag)
+        {
+            stackTag.Push("</" + userInput + ">");
+        }
+
+        private static void AddTextTags(List<string> textTags, List<string> UserInputList, string userInput, Stack<string> stackTag)
         {
             if (textTags.Contains(userInput))
             {
                 Console.WriteLine("Add text:");
                 string tagText = Console.ReadLine();
                 UserInputList.Add(FormatValue(userInput, tagText));
+                PushClosingTags(userInput, stackTag);
             }
+
         }
 
-        private static string AddRequiredTags(List<string> UserInputList, string tag)
+        private static string AddRequiredTags(List<string> UserInputList, string tag, Stack<string> stackTag)
         {
             string userInput;
             do
@@ -107,6 +132,10 @@ namespace HtmlBuilder
                 if (userInput == tag)
                 {
                     UserInputList.Add(FormatValue(userInput, null));
+                    if (tag != "head")
+                    {
+                        PushClosingTags(userInput, stackTag);
+                    }
 
                     DisplayListContent(UserInputList);
                 }
