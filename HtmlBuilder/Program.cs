@@ -49,6 +49,27 @@ namespace HtmlBuilder
             while (userInput != "exit");
         }
 
+        private static string FormatValue(string userInput, string text)
+        {
+            return userInput switch
+            {
+                "html" => "<!DOCTYPE html><html>",
+                "head" => "<head><title>HtmlBuilder</title></head>",
+                "body" => "<body>",
+                "div" => "<div>",
+                "span" => "<span>",
+                "p" => "<p>" + text + "</p>",
+                "h1" => "<h1>" + text + "</h1>",
+                "h2" => "<h2>" + text + "</h2>",
+                "h3" => "<h3>" + text + "</h3>",
+                "h4" => "<h4>" + text + "</h4>",
+                "h5" => "<h5>" + text + "</h5>",
+                "h6" => "<h5>" + text + "</h6>",
+                "close" => "",
+                _ => ""
+            };
+        }
+
         private static void DisplayListContent(List<string> UserInputList)
         {
             foreach (string i in UserInputList)
@@ -61,7 +82,7 @@ namespace HtmlBuilder
         {
             if (!textTags.Contains(userInput))
             {
-                UserInputList.Add(userInput);
+                UserInputList.Add(FormatValue(userInput, null));
             }
         }
 
@@ -71,7 +92,7 @@ namespace HtmlBuilder
             {
                 Console.WriteLine("Add text:");
                 string tagText = Console.ReadLine();
-                UserInputList.Add(userInput + " " + tagText);
+                UserInputList.Add(FormatValue(userInput, tagText));
             }
         }
 
@@ -85,12 +106,9 @@ namespace HtmlBuilder
 
                 if (userInput == tag)
                 {
-                    UserInputList.Add(userInput);
+                    UserInputList.Add(FormatValue(userInput, null));
 
-                    foreach (string i in UserInputList)
-                    {
-                        Console.WriteLine("ai in lista {0}\n", i);
-                    }
+                    DisplayListContent(UserInputList);
                 }
                 else if (userInput == "exit")
                 {
