@@ -8,7 +8,7 @@ namespace HtmlBuilder
         static void Main(string[] args)
         {
             var acceptedValues = new List<string>() { "div", "span", "close", "exit" };
-            var textTags = new List<string>() { "p", "h1", "h2", "h3", "h4", "h5", "h6", };
+            var textTags = new List<string>() { "p", "h1", "h2", "h3", "h4", "h5", "h6", "img" };
             var tagStack = new Stack<string>();
 
             var UserInputList = new List<string>();
@@ -84,6 +84,7 @@ namespace HtmlBuilder
                 "h4" => "<h4>" + text + "</h4>",
                 "h5" => "<h5>" + text + "</h5>",
                 "h6" => "<h5>" + text + "</h6>",
+                "img"=> "<img src='"+text+"' alt='imagine'/>",
                 "close" =>stackTag.Count>0? stackTag.Pop() : null,
                 _ => ""
             };
