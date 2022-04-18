@@ -55,11 +55,17 @@ namespace HtmlBuilder
                 }
                 if (userInput == "exit")
                 {
+                    SaveAsHtml(UserInputList);
                     Environment.Exit(0);
                 }
 
             }
             while (userInput != "exit");
+        }
+
+        private static void SaveAsHtml(List<string> UserInputList)
+        {
+            System.IO.File.WriteAllLines(@"C:\Users\cezar.iancu\Documents\Output.html", UserInputList);
         }
 
         private static string FormatValue(string userInput, string text, Stack<string> stackTag)
