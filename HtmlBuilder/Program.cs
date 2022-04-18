@@ -62,7 +62,7 @@ namespace HtmlBuilder
             while (userInput != "exit");
         }
 
-        private static string FormatValue(string userInput, string text)
+        private static string FormatValue(string userInput, string text, Stack<string> stackTag)
         {
             return userInput switch
             {
@@ -78,7 +78,7 @@ namespace HtmlBuilder
                 "h4" => "<h4>" + text + "</h4>",
                 "h5" => "<h5>" + text + "</h5>",
                 "h6" => "<h5>" + text + "</h6>",
-                "close" => "",
+                "close" =>stackTag.Count>0? stackTag.Pop() : null,
                 _ => ""
             };
         }
@@ -95,12 +95,14 @@ namespace HtmlBuilder
         {
             if (!textTags.Contains(userInput))
             {
-                UserInputList.Add(FormatValue(userInput, null));
+                UserInputList.Add(FormatValue(userInput, null, stackTag));
                 if (userInput != "close")
                 {
-                    PushClosingTags(userInput, stackTag);
+                    if(stackTag.Count > 0)
+                    {
+                        PushClosingTags(userInput, stackTag);
+                    }
                 }
-
             }
         }
 
@@ -115,8 +117,8 @@ namespace HtmlBuilder
             {
                 Console.WriteLine("Add text:");
                 string tagText = Console.ReadLine();
-                UserInputList.Add(FormatValue(userInput, tagText));
-                PushClosingTags(userInput, stackTag);
+                UserInputList.Add(FormatValue(userInput, tagText,null));
+           
             }
 
         }
@@ -131,7 +133,7 @@ namespace HtmlBuilder
 
                 if (userInput == tag)
                 {
-                    UserInputList.Add(FormatValue(userInput, null));
+                    UserInputList.Add(FormatValue(userInput, null,null));
                     if (tag != "head")
                     {
                         PushClosingTags(userInput, stackTag);
