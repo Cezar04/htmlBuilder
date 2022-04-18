@@ -10,6 +10,19 @@ namespace HtmlBuilder
             var acceptedValues = new List<string>() { "div", "span", "close", "exit" };
             var textTags = new List<string>() { "p", "h1", "h2", "h3", "h4", "h5", "h6", "img" };
             var tagStack = new Stack<string>();
+            var ValuesDictionary = new Dictionary<string, int>()
+            {
+                {"div", 0 },
+                {"span",0 },
+                { "p", 0},
+                {"h1",0 },
+                {"h2",0 },
+                {"h3",0 },
+                {"h4", 0 },
+                {"h5",0 },
+                {"h6",0 }
+            };
+          
 
             var UserInputList = new List<string>();
             string userInput;
@@ -34,7 +47,7 @@ namespace HtmlBuilder
                     if (acceptedValues.Contains(userInput) || textTags.Contains(userInput))
                     {
 
-                        AddTextTags(textTags, UserInputList, userInput, tagStack);
+                        AddTextTags(textTags, UserInputList, userInput, tagStack, ValuesDictionary);
 
                         AddItemsToUserInputList(textTags, UserInputList, userInput, tagStack);
 
@@ -55,12 +68,21 @@ namespace HtmlBuilder
                 }
                 if (userInput == "exit")
                 {
+                    CountTag(ValuesDictionary);
                     SaveAsHtml(UserInputList);
                     Environment.Exit(0);
                 }
 
             }
             while (userInput != "exit");
+        }
+
+        private static void CountTag(Dictionary<string, int> ValuesDictionary)
+        {
+            foreach (var (key, value) in ValuesDictionary)
+            {
+                Console.WriteLine($"{key}: {value}");
+            }
         }
 
         private static void SaveAsHtml(List<string> UserInputList)
@@ -118,7 +140,7 @@ namespace HtmlBuilder
             stackTag.Push("</" + userInput + ">");
         }
 
-        private static void AddTextTags(List<string> textTags, List<string> UserInputList, string userInput, Stack<string> stackTag)
+        private static void AddTextTags(List<string> textTags, List<string> UserInputList, string userInput, Stack<string> stackTag, Dictionary<string, int> ValuesDictionary)
         {
             if (textTags.Contains(userInput))
             {
@@ -127,6 +149,12 @@ namespace HtmlBuilder
                 UserInputList.Add(FormatValue(userInput, tagText,null));
            
             }
+
+            if (ValuesDictionary.ContainsKey(userInput))
+            {
+                ValuesDictionary[userInput]++;
+            }
+
 
         }
 
